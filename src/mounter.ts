@@ -43,13 +43,6 @@ export class Mounter {
           callback(0);
           // throw new Error(`readdir: don't what kind of path this is [${path}]`);
         }
-
-        // if (path === '/') {
-        //   // return cb(0, ['test']);
-        //   return cb(0, authorsNames);
-        // }
-
-        // cb(0);
       },
 
       getattr: async function (path: string, callback: any) {
@@ -63,35 +56,8 @@ export class Mounter {
 
         const attr = await node.attr();
         callback(0, attr);
-
-        // if (path === '/') {
-        //   cb(0, {
-        //     mtime: startupTime,
-        //     atime: startupTime,
-        //     ctime: startupTime,
-        //     nlink: 1,
-        //     size: 100,
-        //     mode: 16877,
-        //     uid: process.getuid ? process.getuid() : 0,
-        //     gid: process.getgid ? process.getgid() : 0
-        //   })
-        //   return
-        // }
-     
-        // if (path === '/test') {
-        //   cb(0, {
-        //     mtime: startupTime,
-        //     atime: startupTime,
-        //     ctime: startupTime,
-        //     nlink: 1,
-        //     size: 12,
-        //     mode: 33188,
-        //     uid: process.getuid ? process.getuid() : 0,
-        //     gid: process.getgid ? process.getgid() : 0
-        //   })
-        //   return
-        // }
       },
+      
       open: function (path: string, flags: any, cb: any) {
         console.log('open(%s, %d)', path, flags)
         cb(0, 42) // 42 is an fd

@@ -59,7 +59,8 @@ abstract class AbstractNode implements DirNode, FileNode {
     _cacheRead: string = undefined;
     async read(): Promise<string> {
         if (!this._cacheRead) {
-            const resp = await this.tbc.getDivAsDecoratedHtml(this.completePath);
+            // const resp = await this.tbc.getDivAsDecoratedHtml(this.completePath);
+            const resp = await this.tbc.getDivAsTextPlain(this.completePath);
             this._cacheRead = resp;
         }
         return Promise.resolve(this._cacheRead);
@@ -71,53 +72,6 @@ abstract class AbstractNode implements DirNode, FileNode {
 export interface FileNode extends Node {
     read(): Promise<string>;
 }
-
-/**
- * A DirNode which has readDir and attr operations cached.
- */
-// abstract class CachedDirNode implements DirNode {
-
-//     protected cacheTeiDivs: Cache<string, TeiDivDto>;
-
-//     constructor(protected cacheman: CacheManager, 
-//         protected path: string) {
-//         this.cacheTeiDivs = cacheman.teiDivCache;
-//     }
-
-//     async readdir(): Promise<string[]> {
-//         throw new Error("unimpl");
-        
-//         const cache = this.cacheTeiDivs;
-
-//         if (cache.contains(this.path)) {
-//             const cached = cache.get(this.path);
-//             // cached.children
-//             // TextbaseClient.getAuthorsNamesFromDtos()
-//             return Promise.resolve([]);
-//         }
-
-//         const remoteList = await this.doReaddir();
-//         // this.cacheReaddir.set(this.path, remoteList);
-
-//         return Promise.resolve(remoteList);
-
-//     }
-
-//     async type(): Promise<NodeType> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     async attr(): Promise<Attr> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     async exists(): Promise<boolean> {        
-//         return !! this.attr
-//     }
-
-//     abstract doReaddir(): Promise<string[]>;
-// }
-
 
 export class RootNode extends AbstractNode {
     constructor(

@@ -2,9 +2,9 @@ import axios from 'axios';
 import { AuthorDto, TeiDivDto } from './dtos';
 
 
-type GetAuthorsResp = {
-    authors: Array<AuthorDto>
-};
+// type GetAuthorsResp = {
+//     authors: Array<AuthorDto>
+// };
 
 export class TextbaseClient {
 
@@ -65,6 +65,18 @@ export class TextbaseClient {
             path = `/${path}`;
         const url = `${this.baseurl}${path}`;
         const resp = await axios.get<string>(url);
+        return resp.data;
+    }
+
+    async getDivAsTextPlain(path: string) : Promise<string> {
+        if (!path.startsWith('/'))
+            path = `/${path}`;
+        const url = `${this.baseurl}${path}`;
+        const resp = await axios.get<string>(url, {
+            headers: {
+                'Accept': 'text/plain'
+            }
+        });
         return resp.data;
     }
 
