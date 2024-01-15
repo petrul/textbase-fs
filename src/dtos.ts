@@ -18,6 +18,8 @@ export class AuthorDto {
 }
 
 export class TeiDivDto {
+    id: number;
+    head: string;
     path: string;
     urlFragment: string;
     children: TeiDivDto[];

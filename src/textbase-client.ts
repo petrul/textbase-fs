@@ -2,13 +2,9 @@ import axios from 'axios';
 import { AuthorDto, TeiDivDto } from './dtos';
 
 
-// type GetAuthorsResp = {
-//     authors: Array<AuthorDto>
-// };
-
 export class TextbaseClient {
 
-    constructor(public baseurl: string = 'http://localhost:8080') {}
+    constructor(public baseurl: string = 'https://textbase.scriptorium.ro') {}
 
     async getAuthors() : Promise<AuthorDto[]> {
         const url = `${this.baseurl}/api/drest/authors?size=1000`
@@ -78,6 +74,12 @@ export class TextbaseClient {
             }
         });
         return resp.data;
+    }
+
+    async getDivToc(id: number) : Promise<TeiDivDto[]> {
+        const url = `${this.baseurl}/api/divs/${id}/toc`;
+        const resp = await axios.get<TeiDivDto[]>(url);
+        return Promise.resolve(resp.data);
     }
 
 }
