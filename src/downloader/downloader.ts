@@ -59,15 +59,25 @@ export class Downloader {
                     console.log(`\t${chapterPath}`);
                     
                     if (! fs.existsSync(chapterPath)) {
-                        const txt = await tbc.getDivAsTextPlain(chapter.path)
-                        // console.log(txt);
-                        fs.writeFileSync(chapterPath, txt);
+                        try {
+                            const txt = await tbc.getDivAsTextPlain(chapter.path);
+                            // console.log(txt);
+                            fs.writeFileSync(chapterPath, txt);
+                        } catch (e) {
+                            console.warn(`ignoring error occured during retrieval of ${chapter.path}`, e);
+                        }
+
                     }
                 }
                 
             };
         }
     }
+    // async getDivAsTextPlain(path: string) {
+    //     try {
+    //         return await this.tbc.getDivAsTextPlain(path);
+    //     } ca
+    // }
 }
 
 const tbc = new TextbaseClient()
