@@ -52,7 +52,8 @@ export class Downloader {
                 let i = 0
                 for (const chapter of toc) {
                     const istr = new String(i++).padStart(4, "0");
-                    const chapterFilename = `${istr}_${chapter.id}_${chapter.urlFragment}.txt`
+                    const pathSlashReplaces  = chapter.path.replace(/\//g, '__');
+                    const chapterFilename = `${istr}_${chapter.id}_${pathSlashReplaces}.txt`;
                     
                     const chapterPath = `${opdir}/${chapterFilename}`;
                     console.log(`\t${chapterPath}`);
