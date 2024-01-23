@@ -1,9 +1,6 @@
 import assert from "assert";
 import { TextbaseClient } from "../textbase-client";
-import { writeFile } from 'fs';
-
 import fs from 'node:fs';
-import { TeiDivDto } from "../dtos";
 
 export class Downloader {
 
