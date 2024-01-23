@@ -5,7 +5,7 @@ import fs from 'node:fs';
 export class Downloader {
 
     dlDir: string;
-    constructor(dlDir: string = "~/work/textbase-dl", protected tbc: TextbaseClient) {
+    constructor(dlDir: string = `~/work/textbase-dl-${new Date().getTime()}`, protected tbc: TextbaseClient) {
         const os = require('os');
         this.dlDir = dlDir.replace('~', os.homedir())
         if (!fs.existsSync(this.dlDir)) {
