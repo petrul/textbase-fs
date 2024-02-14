@@ -1,6 +1,5 @@
 # textbase-fs
 
-
 - Textbase fuse filesystem. Mount https://textbase.scriptorium.ro as a local filesystem.
 - Textbase downloader. In order to download the whole of Textbase, run:
 
@@ -13,7 +12,11 @@ or
 $ npm run downloader
 ```
 
-Works on Node v18.
+Prereqs:
+```
+$ nvm install 18 # Works on Node v18.
+$ sudo apt install libfuse-dev # on ubuntu 20
+```
 
 ## Build: 
 ```bash
